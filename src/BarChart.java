@@ -55,6 +55,7 @@ class BarChart extends Panel
 			g.drawImage(duke, 80, 10, this);
 		}
 		assert(data.size() != 0);
+		assert(data.size() == dataColors.size() && data.size() == dataLabels.size());
 		for (int i = 0; i < data.size(); i++)
 		{				  
 			int yposition = 100+i*barWidth;
@@ -78,11 +79,12 @@ class BarChart extends Panel
 	}
 
 	/*
-      CST316 #10: Consider the set methods below, how they are called, and
+      CST316 #10: Consider the set methods below, how they are called, and //DONE
       the problem posed by issue #9 above. Refactor the code to create a
       "safe zone" that always ensures that the condition you coded in the
       assert for #9 is enforced (thereby rendering that assert unneeded).
 	 */
+		
 	public void setData(Vector<Integer> dataValues)
 	{
 		assert(dataValues.size() != 0);

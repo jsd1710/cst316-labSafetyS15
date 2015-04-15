@@ -54,7 +54,7 @@ class BarChartFrame extends Frame
 		}
 	}
 
-	public void initData(String fname)
+	public void initData(String fname) throws MyDataInitializationException
 	{
 		data = new Vector<Integer>();
 		labels = new Vector<String>();
@@ -74,7 +74,7 @@ class BarChartFrame extends Frame
 		// #2. The method assumes the color read from the file is in the color map. Modify //DONE
 		//     so that if the color is not in the color map, it gets mapped to the color
 		//     "Color.orange", no matter what the color string says.
-		// #3. The method does a poor job of exception handling. Catch each specific type
+		// #3. The method does a poor job of exception handling. Catch each specific type //DONE
 		//     of checked exception possible within this block, print out a message
 		//     indicating the type of exception caught (e.g. "Caught XXX"), and rethrow a 
 		//     new exception called MyDataInitializationException (you have to write this).
@@ -114,7 +114,7 @@ class BarChartFrame extends Frame
 		catch (Exception e) {e.printStackTrace();}
 	}
 
-	public BarChartFrame(String fname) {
+	public BarChartFrame(String fname) throws MyDataInitializationException {
 		BarChartFrameControl control = new BarChartFrameControl();
 
 		initData(fname);
