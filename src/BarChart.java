@@ -39,7 +39,7 @@ class BarChart extends Panel
        Refactor this method and the class to ensure the Image duke
        is loaded properly. If it is not loaded properly then invalidate
        painting the image object (Defensive Programming: robustness).
-       CST316 #8: Design By Contract - what is the assumed precondition
+       CST316 #8: Design By Contract - what is the assumed precondition //DONE
        of the Vectors in use in the for loop? Add an assert statement
        (or two) to check the precondition.
        CST316 #9: Now apply the Null Object refactoring to ensure there
@@ -57,9 +57,12 @@ class BarChart extends Panel
 		for (int i = 0; i < data.size(); i++)
 		{				  
 			int yposition = 100+i*barWidth;
+			assert(barWidth > 0):"The width of the bars are not visible.";
 
 			g.setColor(dataColors.elementAt(i));
 
+			assert(data.elementAt(i) instanceof Integer);
+			
 			int barLength = (data.elementAt(i)).intValue();
 			g.fillOval(100, yposition, barLength, barWidth);
 
