@@ -63,12 +63,13 @@ class BarChartFrame extends Frame
 		colorMap.put("blue", Color.blue);
 		colorMap.put("magenta", Color.magenta);
 		colorMap.put("gray", Color.gray);
+		colorMap.put("orange", Color.orange);
 
 		// CST316: This try/catch block is unsafe. Correct the following issues:
 		// #1. The method makes assumptions about the existence and contents of the file.
 		//     If the file does not exist or uses an invalid format on a line, it should
 		//     skip that line.
-		// #2. The method assumes the color read from the file is in the color map. Modify
+		// #2. The method assumes the color read from the file is in the color map. Modify //DONE
 		//     so that if the color is not in the color map, it gets mapped to the color
 		//     "Color.orange", no matter what the color string says.
 		// #3. The method does a poor job of exception handling. Catch each specific type
@@ -76,20 +77,37 @@ class BarChartFrame extends Frame
 		//     indicating the type of exception caught (e.g. "Caught XXX"), and rethrow a 
 		//     new exception called MyDataInitializationException (you have to write this).
 		try {
-			FileReader bridge = new FileReader(fname);
-			StreamTokenizer	tokens = new StreamTokenizer(bridge);
+			File f = new File(fname);
+			if (f.exists() && !f.isDirectory())
+			{
+				FileReader bridge = new FileReader(fname);
+				StreamTokenizer	tokens = new StreamTokenizer(bridge);
+				
+				while (tokens.nextToken() != StreamTokenizer.TT_EOF) {
+					int number = (int) tokens.nval;
+					tokens.nextToken();
+					String label = tokens.sval;
+					tokens.nextToken();
+					Color color = null;
+					if (colorMap.get(tokens.sval) == null)
+					{
+						color = Color.orange;
+					}
+					else
+					{
+						color = (Color) colorMap.get(tokens.sval);
+					}
 
-			while (tokens.nextToken() != StreamTokenizer.TT_EOF) {
-				int number = (int) tokens.nval;
-				tokens.nextToken();
-				String label = tokens.sval;
-				tokens.nextToken();
-				Color color = (Color) colorMap.get(tokens.sval);
-
-				data.addElement(new Integer(number));
-				labels.addElement(label);
-				colors.addElement(color);
+					data.addElement(new Integer(number));
+					labels.addElement(label);
+					colors.addElement(color);
+				}
 			}
+			else
+			{
+				System.out.println("File " + fname + " does not exist!");
+			}
+			
 		}
 		catch (Exception e) {e.printStackTrace();}
 	}
