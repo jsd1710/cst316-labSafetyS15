@@ -42,7 +42,7 @@ class BarChart extends Panel
        CST316 #8: Design By Contract - what is the assumed precondition //DONE
        of the Vectors in use in the for loop? Add an assert statement
        (or two) to check the precondition.
-       CST316 #9: Now apply the Null Object refactoring to ensure there
+       CST316 #9: Now apply the Null Object refactoring to ensure there //DONE
        is no way a color can be set to NULL. Make the default color "white".
 	 */
 	public void paint(Graphics g)
@@ -59,7 +59,14 @@ class BarChart extends Panel
 			int yposition = 100+i*barWidth;
 			assert(barWidth > 0):"The width of the bars are not visible.";
 
-			g.setColor(dataColors.elementAt(i));
+			if (dataColors.elementAt(i) == null)
+			{
+				g.setColor(Color.WHITE);
+			}
+			else
+			{
+				g.setColor(dataColors.elementAt(i));
+			}
 
 			assert(data.elementAt(i) instanceof Integer);
 			
