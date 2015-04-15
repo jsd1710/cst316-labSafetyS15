@@ -54,6 +54,7 @@ class BarChart extends Panel
 			Image duke = Toolkit.getDefaultToolkit().getImage("duke2.gif");
 			g.drawImage(duke, 80, 10, this);
 		}
+		assert(data.size() != 0);
 		for (int i = 0; i < data.size(); i++)
 		{				  
 			int yposition = 100+i*barWidth;
@@ -67,8 +68,6 @@ class BarChart extends Panel
 			{
 				g.setColor(dataColors.elementAt(i));
 			}
-
-			assert(data.elementAt(i) instanceof Integer);
 			
 			int barLength = (data.elementAt(i)).intValue();
 			g.fillOval(100, yposition, barLength, barWidth);
@@ -86,16 +85,19 @@ class BarChart extends Panel
 	 */
 	public void setData(Vector<Integer> dataValues)
 	{
+		assert(dataValues.size() != 0);
 		data = dataValues;
 	}
 
 	public void setLabels(Vector<String> labels)
 	{
+		assert(labels.size() != 0);
 		dataLabels = labels;
 	}
 
 	public void setColors(Vector<Color> colors)
 	{
+		assert(colors.size() != 0);
 		dataColors = colors;
 	}
 }
