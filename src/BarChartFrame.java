@@ -27,7 +27,7 @@ class BarChartFrame extends Frame
 	    // exception, APPLY THE STATE PATTERN to ensure an invalid value
 	    // never reaches the handler.
 	    //
-		// CST316 #5: The line which adds an element to the colors vector
+		// CST316 #5: The line which adds an element to the colors vector //DONE
 		// assumes the selected item is available in the colorMap. Add
 		// an ASSERT that tests that this assumption is always true and
 		// if not prints a message indicating "CST316-2 assert failed"
@@ -37,6 +37,8 @@ class BarChartFrame extends Frame
 			{
 				labels.addElement(labelSelect.getText());
 				data.addElement(new Integer(dataSelect.getText()));
+				assert(colorMap.get(colorSelect.getSelectedItem()) == null):"CST316-2 assert failed";
+				
 				colors.addElement(colorMap.get(colorSelect.getSelectedItem()));
 
 				chart.setData(data);
