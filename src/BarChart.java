@@ -1,11 +1,13 @@
 import java.awt.*;
+import java.io.File;
 import java.util.Vector;
 
 /**
-CST316 #6: This class lacks a constructor of any kind. 
+CST316 #6: This class lacks a constructor of any kind. //DONE
 Add one that accepts proper initialization parameters.
 Question: (answer in this comment): Why is it unsafe to
 not have an explicit constructor?
+ANSWER: If you do not have a constructor and someone attempts to create an instance of this class, it could result in uninitialized variables.
  */
 @SuppressWarnings("serial")
 class BarChart extends Panel
@@ -15,9 +17,25 @@ class BarChart extends Panel
 	private Vector<Integer>	data;
 	private Vector<String>	dataLabels;
 	private Vector<Color>	dataColors;
+	
+	BarChart()
+	{
+		barWidth = 20;
+		data = new Vector<Integer>();
+		dataLabels = new Vector<String>();
+		dataColors = new Vector<Color>();
+	}
+	
+	BarChart(int barWidthInp, Vector<Integer> dataInp, Vector<String> dataLabelsInp, Vector<Color> dataColorsInp)
+	{
+		barWidth = barWidthInp;
+		data = dataInp;
+		dataLabels = dataLabelsInp;
+		dataColors = dataColorsInp;
+	}
 
 	/**
-       CST316 #7: What can go wrong in this paint method?
+       CST316 #7: What can go wrong in this paint method? //DONE
        Refactor this method and the class to ensure the Image duke
        is loaded properly. If it is not loaded properly then invalidate
        painting the image object (Defensive Programming: robustness).
@@ -30,9 +48,12 @@ class BarChart extends Panel
 	public void paint(Graphics g)
 	{
 		setSize(200,250);
-		Image duke = Toolkit.getDefaultToolkit().getImage("duke2.gif");
-		g.drawImage(duke, 80, 10, this);
-
+		File f = new File("duke2.gif");
+		if (f.exists())
+		{
+			Image duke = Toolkit.getDefaultToolkit().getImage("duke2.gif");
+			g.drawImage(duke, 80, 10, this);
+		}
 		for (int i = 0; i < data.size(); i++)
 		{				  
 			int yposition = 100+i*barWidth;
