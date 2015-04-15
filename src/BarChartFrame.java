@@ -68,7 +68,7 @@ class BarChartFrame extends Frame
 		colorMap.put("orange", Color.orange);
 
 		// CST316: This try/catch block is unsafe. Correct the following issues:
-		// #1. The method makes assumptions about the existence and contents of the file.
+		// #1. The method makes assumptions about the existence and contents of the file. //PARTIALLY DONE
 		//     If the file does not exist or uses an invalid format on a line, it should
 		//     skip that line.
 		// #2. The method assumes the color read from the file is in the color map. Modify //DONE
